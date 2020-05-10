@@ -1,6 +1,8 @@
 # FONKSİYONLAR
   -Yeni kullanıcı kaydı oluşturmak
+  
   -Kullanıcı girişi yapmak
+  
   -Rehbere kişi eklemek
   -Rehberdeki kişileri listelemek
   -Rehberdeki kişilerin bilgilerini güncellemek
