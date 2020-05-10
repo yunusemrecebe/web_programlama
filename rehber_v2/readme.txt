@@ -3,7 +3,7 @@ Rehber_v2 güncelleme notları:
 Görsel Yenilikler
     -Site tasarımı tamamen responsive tasarım standartlarına uygun şekilde yenilendi.
     -Yeni ve daha sade bir login sayfası tasarlandı.
-    -Panel ekranı kaldırıldı. Artık giriş yapıldıktan sonra direkt olara kişiler sayfası açılıyor.
+    -Panel ekranı kaldırıldı. Artık giriş yapıldıktan sonra direkt olarak kişiler sayfası açılıyor.
 
 Güvenlik Eklemeleri
     -Log kayıt sistemi oluşturuldu. Gerçekleştirilen tüm işlemler detaylı bir şekilde database üzerinde kayıt altına alınacak.
