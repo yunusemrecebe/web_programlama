@@ -13,6 +13,6 @@ Güvenlik Eklemeleri
     -Rehbere yeni kişi eklerken daha önce eklenen Telefon Numarası ile yeniden farklı bir kişinin rehbere eklenmesi engellendi.
     -Rehbere yeni grup eklerken daha önce eklenen Grup Adına sahip bir grubun yeniden eklenmesi engellendi.
     -Grupta kayıtlı kişi varken grup silme işleminin gerçekleştirilmesi engellendi. Öncelikle gruptaki kişiler gruptan çıkarılmalı.
-    -Mail yazılan form kutularına mail adresi formatına uygun olmayan içeriklerin girilmesi engellendi.
+    -Mail adresi yazılan form kutularına mail adresi formatına uygun olmayan içeriklerin girilmesi engellendi.
     -Telefon numarası yazılan form kutularına gerekli formata uygun olmayan içeriklerin girilmesi engellendi.
 
