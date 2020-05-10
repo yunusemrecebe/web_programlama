@@ -1,11 +1,11 @@
-Rehber_v2 güncelleme notları:
+#Rehber_v2 güncelleme notları:
 
-Görsel Yenilikler
+#Görsel Yenilikler
     -Site tasarımı tamamen responsive tasarım standartlarına uygun şekilde yenilendi.
     -Yeni ve daha sade bir login sayfası tasarlandı.
     -Panel ekranı kaldırıldı. Artık giriş yapıldıktan sonra direkt olarak kişiler sayfası açılıyor.
 
-Güvenlik Eklemeleri
+#Güvenlik Eklemeleri
     -Log kayıt sistemi oluşturuldu. Gerçekleştirilen tüm işlemler detaylı bir şekilde database üzerinde kayıt altına alınacak.
     -Login ekranında giriş yapmayan kullanıcının herhangi bir sayfayı görüntülemesi engellendi.
     -Daha önce kullanılmış bir mail adresi ile ikinci defa üyelik oluşturulması engellendi.
