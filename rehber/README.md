@@ -1,4 +1,4 @@
-FONKSİYONLAR
+# FONKSİYONLAR
 
 -Yeni kullanıcı kaydı oluşturmak
 -Kullanıcı girişi yapmak
@@ -14,5 +14,5 @@ FONKSİYONLAR
 -Seçilen gruba eklenmiş kişileri listelemek
 -Grup içerisine eklenmiş kişileri gruptan çıkarabilmek
 
-Youtube üzerinde görüntülemek için:
+# Youtube üzerinde görüntülemek için:
 https://youtu.be/vB5reoBcEIw
