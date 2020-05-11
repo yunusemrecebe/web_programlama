@@ -17,4 +17,7 @@
     -Grupta kayıtlı kişi varken grup silme işleminin gerçekleştirilmesi engellendi. Öncelikle gruptaki kişiler gruptan çıkarılmalı.
     -Mail adresi yazılan form kutularına mail adresi formatına uygun olmayan içeriklerin girilmesi engellendi.
     -Telefon numarası yazılan form kutularına gerekli formata uygun olmayan içeriklerin girilmesi engellendi.
+    
+# Youtube Üzerinde Görüntülemek İçin
+    https://youtu.be/P6weK09TCvM
 
