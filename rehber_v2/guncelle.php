@@ -23,6 +23,7 @@ session_start();
   onclick="w3_close()">Kapat &times;</button>
   <a href="kisiler.php" class="w3-bar-item w3-button">Kişiler</a>
   <a href="gruplar.php" class="w3-bar-item w3-button">Gruplar</a>
+  <a href="log_listele.php" class="w3-bar-item w3-button">İşlem Logları</a>
   <a href="cikis.php" class="w3-bar-item w3-button">Çıkış Yap  <i class="fa fa-sign-out" style="font-size:18px"></i></a>
 </div>
 
@@ -95,7 +96,7 @@ $sonuc = $sorgu->fetch(PDO::FETCH_ASSOC);
 		<td><select class="custom-select" name="up_form_grup" >
     		<option selected><?php echo $veri_grup; ?></option>
 			<?php
-                foreach ($db->query("SELECT * FROM gruplar") as $category ){
+                foreach ($db->query("SELECT * FROM gruplar WHERE sahip='{$_SESSION['kullanici']}'") as $category ){
                     echo '<option value="'.$category["ad"].'">'.$category["ad"].'</option>';
                 }
             ?>

@@ -50,7 +50,7 @@ $sonuc2=$telefon_ara->rowCount();
 		$l_ad = $_POST['kadi'];
 		$islem="'{$l_ad}' adlı kişi yeni üyelik oluşturdu.";
 		$kullanici = $_POST['mail'];
-		log_islem($islem,$kullanici); 
+		log_islem_uye($islem,$kullanici); 
 		Header("Refresh: 0.1; url=index.php");		
 
 	} else {

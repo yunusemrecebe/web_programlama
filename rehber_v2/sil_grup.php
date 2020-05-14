@@ -9,7 +9,8 @@ session_start();
     if ($_SESSION['durum']==1){ 
 
 //Grupta kişi varlığı kontrolü
-$kontrol = $db->prepare("SELECT * FROM gruplar join kisiler on gruplar.ad = kisiler.grup WHERE grup='{$_GET['ad']}'");
+$kontrol = $db->prepare("SELECT * FROM kisiler WHERE kisiler.grup='{$_GET['ad']}' and kisiler.sahip='{$_SESSION['kullanici']}'");
+						 
 $ad = $_GET['ad'];
 $kontrol->execute();
 $sonuc = $kontrol->rowCount();

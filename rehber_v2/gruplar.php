@@ -23,6 +23,7 @@ if ($_SESSION['durum']==1){
   onclick="w3_close()">Kapat &times;</button>
   <a href="kisiler.php" class="w3-bar-item w3-button">Kişiler</a>
   <a href="gruplar.php" class="w3-bar-item w3-button">Gruplar</a>
+  <a href="log_listele.php" class="w3-bar-item w3-button">İşlem Logları</a>
   <a href="cikis.php" class="w3-bar-item w3-button">Çıkış Yap  <i class="fa fa-sign-out" style="font-size:18px"></i></a>
 </div>
 
@@ -69,7 +70,7 @@ if ($_POST) {
 
 $grup_ad = $form_grup_ad;
 
-$grup_ara=$db->query("SELECT * from gruplar where ad like '$grup_ad'");
+$grup_ara=$db->query("SELECT * FROM gruplar WHERE ad LIKE '$grup_ad' AND sahip='{$_SESSION['kullanici']}'");
 $sonuc1=$grup_ara->rowCount();
 
     if($grup_ara && $sonuc1>0){
@@ -83,8 +84,11 @@ $sonuc1=$grup_ara->rowCount();
 
       if ($form_grup_ad<>"") {
 
-          $query = $db->prepare("INSERT INTO gruplar SET ad = :grup");        
-          $insert = $query->execute(array("grup" => $form_grup_ad,));
+          $query = $db->prepare("INSERT INTO gruplar SET ad = :grup, sahip = :sahip");        
+          $insert = $query->execute(array(
+            "grup"  => $form_grup_ad, 
+            "sahip" => $_SESSION['kullanici'],
+          ));
           if ( $insert ){
               $last_id = $db->lastInsertId();
               echo "<script type='text/javascript'>alert('Grup Ekleme İşlemi Başarılı!');</script>";
@@ -120,7 +124,7 @@ $sonuc1=$grup_ara->rowCount();
 
 <?php 
 
-$sorgu = $db->query("SELECT * FROM gruplar");
+$sorgu = $db->query("SELECT * FROM gruplar WHERE sahip='{$_SESSION['kullanici']}'");
 while ( $sonuc = $sorgu->fetch(PDO::FETCH_ASSOC) ){ 
     $veri_grup_ad = $sonuc['ad'];
 

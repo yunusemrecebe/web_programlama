@@ -25,6 +25,7 @@ if ($_SESSION['durum']==1){
   onclick="w3_close()">Kapat &times;</button>
   <a href="kisiler.php" class="w3-bar-item w3-button">Kişiler</a>
   <a href="gruplar.php" class="w3-bar-item w3-button">Gruplar</a>
+  <a href="log_listele.php" class="w3-bar-item w3-button">İşlem Logları</a>
   <a href="cikis.php" class="w3-bar-item w3-button">Çıkış Yap  <i class="fa fa-sign-out" style="font-size:18px"></i></a>
   
 </div>
@@ -86,7 +87,7 @@ if ($_SESSION['durum']==1){
 		<td><select class="custom-select" name="form_grup">
     		<option selected>Yok</option>
 			<?php
-                foreach ($db->query("SELECT * FROM gruplar") as $category ){
+                foreach ($db->query("SELECT * FROM gruplar WHERE sahip='{$_SESSION['kullanici']}'") as $category ){
                     echo '<option value="'.$category["ad"].'">'.$category["ad"].'</option>';
                 }
             ?>
@@ -134,7 +135,7 @@ if ($_POST) {
     $ad_ara=$db->query("SELECT * from kisiler where ad like '$ad' ");
     $sonuc1=$ad_ara->rowCount();
         
-    $soyad_ara=$db->query("SELECT * from kisiler where soyad like '$soyad' ");
+    $soyad_ara=$db->query("SELECT * from kisiler where soyad like '$soyad' AND sahip='{$_SESSION['kullanici']}'");
     $sonuc2=$soyad_ara->rowCount();
 
 	if(($ad_ara && $soyad_ara) && ($sonuc1>0 && $sonuc2>0) ){
@@ -152,7 +153,7 @@ if ($_POST) {
 
 $telefon = $form_cep_no;
 
-$telefon_ara=$db->query("SELECT * from kisiler where cep_no like '$telefon'");
+$telefon_ara=$db->query("SELECT * FROM kisiler WHERE cep_no LIKE '$telefon' AND sahip='{$_SESSION['kullanici']}'");
 $sonuc3=$telefon_ara->rowCount();
 
     if($telefon_ara && $sonuc3>0){
@@ -175,7 +176,8 @@ $sonuc3=$telefon_ara->rowCount();
                         ev_tel = :ev_no,
                         grup = :grup,
                         mail = :mail,    
-                        aciklama = :aciklama");        
+                        aciklama = :aciklama,
+                        sahip = :sahip");        
                     $insert = $query->execute(array(
                         "ad" => $form_ad,
                         "soyad" => $form_soyad,
@@ -186,6 +188,7 @@ $sonuc3=$telefon_ara->rowCount();
                         "grup" => $form_grup,
                         "mail" => $form_mail,
                         "aciklama" => $form_aciklama,
+                        "sahip" => $_SESSION['kullanici'], 
                     ));
                     if ( $insert ){
                         $last_id = $db->lastInsertId();
@@ -231,7 +234,7 @@ $sonuc3=$telefon_ara->rowCount();
 <?php 
 
 
-$sorgu = $db->query("SELECT * FROM kisiler");
+$sorgu = $db->query("SELECT * FROM kisiler WHERE kisiler.sahip='{$_SESSION['kullanici']}' ");
 while ( $sonuc = $sorgu->fetch(PDO::FETCH_ASSOC) ){
     $id = $sonuc['id']; 
     $veri_ad = $sonuc['ad'];

@@ -23,6 +23,7 @@ if ($_SESSION['durum']==1){
   onclick="w3_close()">Kapat &times;</button>
   <a href="kisiler.php" class="w3-bar-item w3-button">Kişiler</a>
   <a href="gruplar.php" class="w3-bar-item w3-button">Gruplar</a>
+  <a href="log_listele.php" class="w3-bar-item w3-button">İşlem Logları</a>
   <a href="cikis.php" class="w3-bar-item w3-button">Çıkış Yap  <i class="fa fa-sign-out" style="font-size:18px"></i></a>
 </div>
 
@@ -38,7 +39,7 @@ if ($_SESSION['durum']==1){
 </div>
 <!-- GRUP ADI GÖSTER VE GÜNCELLE  -->
 <?php 
-	$query = $db->query("SELECT * FROM gruplar WHERE ad = '{$_GET['ad']}'")->fetch(PDO::FETCH_ASSOC);
+	$query = $db->query("SELECT * FROM gruplar WHERE ad = '{$_GET['ad']}' AND sahip='{$_SESSION['kullanici']}'")->fetch(PDO::FETCH_ASSOC);
 	if ( $query ){
     	$veri_grup_ad = ($query['ad']);
 	}
@@ -71,25 +72,33 @@ if ($_SESSION['durum']==1){
 if ($_POST) { 
 	
     $up_form_grup_ad = $_POST['up_form_ad'];
-    
-	if ($up_form_grup_ad<>"") { 
-        
-		if ($db->query("UPDATE gruplar SET ad = '$up_form_grup_ad' WHERE ad = '{$_GET['ad']}'") && ($db->query("UPDATE kisiler SET grup = '$up_form_grup_ad' WHERE grup = '{$_GET['ad']}'")))
-		{
-			echo "<script type='text/javascript'>alert('Güncelleme İşlemi Başarılı!');</script>";
-			//GRUP ADI GÜNCELLENDİ LOG BİLGİSİ
-			$l_ad1 = $veri_grup_ad;
-			$l_ad2 = $up_form_grup_ad;
-			$islem="'{$l_ad1}' adlı grubun adı '{$l_ad2}' olarak güncellendi.";
-			$kullanici = $_SESSION['kullanici']; 
+	
 
-			log_islem($islem,$kullanici);
-			Header("Refresh: 0.1; url=gruplar.php");
-	        
+	if ($up_form_grup_ad<>"") { 
+		//Grup Adı DB'de kayıtlı mı kontrolü
+		$grup_ara=$db->query("SELECT * from gruplar where ad like '{$up_form_grup_ad}' AND sahip='{$_SESSION['kullanici']}'");
+    	if($grup_ara->rowCount()){
+			echo "<script type='text/javascript'>alert('Aynı isimde bir grup zaten var!');</script>";
 		}
-		else
-		{
-			echo "<script type='text/javascript'>alert('Bir Hata Oluştu!');</script>";
+		else{
+			if 	($db->query("UPDATE gruplar SET ad = '$up_form_grup_ad' WHERE ad = '{$_GET['ad']}' AND sahip='{$_SESSION['kullanici']}'") && 
+				($db->query("UPDATE kisiler SET grup = '$up_form_grup_ad' WHERE grup = '{$_GET['ad']}' AND sahip='{$_SESSION['kullanici']}'")))
+			{
+				echo "<script type='text/javascript'>alert('Güncelleme İşlemi Başarılı!');</script>";
+				//GRUP ADI GÜNCELLENDİ LOG BİLGİSİ
+				$l_ad1 = $veri_grup_ad;
+				$l_ad2 = $up_form_grup_ad;
+				$islem="'{$l_ad1}' adlı grubun adı '{$l_ad2}' olarak güncellendi.";
+				$kullanici = $_SESSION['kullanici']; 
+
+				log_islem($islem,$kullanici);
+				Header("Refresh: 0.1; url=gruplar.php");
+				
+			}
+			else
+			{
+				echo "<script type='text/javascript'>alert('Bir Hata Oluştu!');</script>";
+			}
 		}
 
 	}

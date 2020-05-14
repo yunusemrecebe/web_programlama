@@ -7,11 +7,11 @@ include("baglan.php");
 include("log.php");
 session_start();
     if ($_SESSION['durum']==1){
-
+        
         //KİŞİ SİLİNMEDEN ÖNCE LOG KAYDI İÇİN BİLGİLERİNİ ÇEKİYORUM
-    $kisi_ad = $db->query("SELECT * FROM kisiler WHERE id = {$_GET['id']}")->fetch(PDO::FETCH_ASSOC);
-
-        if ($db->exec("DELETE FROM kisiler WHERE id =".(int)$_GET['id'])) 
+    $kisi_ad = $db->query("SELECT * FROM kisiler WHERE id = {$_GET['id']} AND sahip='{$_SESSION['kullanici']}'")->fetch(PDO::FETCH_ASSOC);
+         
+    if ($db->exec("DELETE FROM kisiler WHERE id = {$_GET['id']} AND sahip='{$_SESSION['kullanici']}'"))
         {
             echo "<script type='text/javascript'>alert('Kişi Silme İşlemi Başarılı!');</script>";
             

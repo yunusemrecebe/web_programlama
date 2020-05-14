@@ -23,6 +23,7 @@ session_start();
   onclick="w3_close()">Kapat &times;</button>
   <a href="kisiler.php" class="w3-bar-item w3-button">Kişiler</a>
   <a href="gruplar.php" class="w3-bar-item w3-button">Gruplar</a>
+  <a href="log_listele.php" class="w3-bar-item w3-button">İşlem Logları</a>
   <a href="cikis.php" class="w3-bar-item w3-button">Çıkış Yap  <i class="fa fa-sign-out" style="font-size:18px"></i></a>
 </div>
 
@@ -37,8 +38,8 @@ session_start();
   </div>
 </div>
 <!-- GRUP ADI GÖSTER -->
-<?php 
-	$listele = $db->query("SELECT * FROM gruplar WHERE ad = '{$_GET['ad']}'")->fetch(PDO::FETCH_ASSOC);
+<?php 					
+	$listele = $db->query("SELECT * FROM gruplar WHERE ad = '{$_GET['ad']}' AND sahip='{$_SESSION['kullanici']}'")->fetch(PDO::FETCH_ASSOC);
 	if ( $listele ){
 		$veri_grup_ad = ($listele['ad']);
 		//GRUP LİSTEMELE İŞLEMİ LOG BİLGİSİ
@@ -68,51 +69,41 @@ session_start();
 		<th>Cep No</th>
         <th>Ev Tel</th>
 		<th>Mail</th>
-		<th>aciklama</th>
+		<th>Açıklama</th>
 		<th></th>
 		<th></th>
 	</tr>
 
 
 <?php
-$name = array($_GET['ad']);
-$sql = "SELECT COUNT(*) FROM kisiler";
-if ($res = $db->query($sql)) {
-	if ($res->fetchColumn() > 0) 
-	{
-        $sql = "SELECT * FROM gruplar join kisiler on gruplar.ad = kisiler.grup Where grup = '$name[0]'";
-
-		foreach ($db->query($sql) as $veri) 
-		{ 
-			$id = $veri['id'];
-			$veri['ad'];
-			$veri['soyad'];
-			$veri['kurulus'];
-			$veri['unvan'];
-			$veri['cep_no'];
-			$veri['ev_tel'];
-			$veri['mail'];
-			$veri['aciklama']; 
+$name = $_GET['ad'];
+$sorgu = $db->query("SELECT * FROM kisiler WHERE grup='$name' and kisiler.sahip='{$_SESSION['kullanici']}' ");
+while ( $veri = $sorgu->fetch(PDO::FETCH_ASSOC) ){
+	$veri['id'];
+	$veri['ad'];
+    $veri['soyad'];
+    $veri['kurulus'];
+    $veri['unvan'];
+    $veri['cep_no'];
+    $veri['ev_tel'];
+    $veri['mail'];
+    $veri['aciklama'];
 ?>
 
 <tr>
-		<td style=""><?php echo $veri['ad']; ?></td>
-		<td style=""><?php echo $veri['soyad'] ?></td>
-        <td style=""><?php echo $veri['kurulus']; ?></td>
-        <td style=""><?php echo $veri['unvan']; ?></td>
-		<td style=""><?php echo $veri['cep_no']; ?></td>
-        <td style=""><?php echo $veri['ev_tel']; ?></td>
-        <td style=""><?php echo $veri['mail']; ?></td>
-		<td style=""><?php echo $veri['aciklama']; ?></td>
-		<td><a href="gruptan_cikar.php?id=<?php echo $id; ?>" class="btn btn-danger"  style="width:150px;">Gruptan Çıkar</a></td>
+	<td style=""><?php echo $veri['ad']; ?></td>
+	<td style=""><?php echo $veri['soyad'] ?></td>
+    <td style=""><?php echo $veri['kurulus']; ?></td>
+    <td style=""><?php echo $veri['unvan']; ?></td>
+	<td style=""><?php echo $veri['cep_no']; ?></td>
+    <td style=""><?php echo $veri['ev_tel']; ?></td>
+    <td style=""><?php echo $veri['mail']; ?></td>
+	<td style=""><?php echo $veri['aciklama']; ?></td>
+	<td><a href="gruptan_cikar.php?id=<?php echo $veri['id']; ?>" class="btn btn-danger"  style="width:150px;">Gruptan Çıkar</a></td>
 	</tr>
 
 <?php
-		}
-	}
 }
-$res = null;
-$db = null;
 ?>
 </div>
 
