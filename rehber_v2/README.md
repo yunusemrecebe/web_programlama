@@ -20,5 +20,4 @@
     -Telefon numarası yazılan form kutularına gerekli formata uygun olmayan içeriklerin girilmesi engellendi.
     
 # Youtube Üzerinde Görüntülemek İçin
-YAKINDA...
-
+https://youtu.be/hr7ltS5K5yI
