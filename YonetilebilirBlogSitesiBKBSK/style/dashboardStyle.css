@@ -1,0 +1,148 @@
+.adminSayfa{
+	width: 100%;
+	display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+
+.adminSayfaIcerik{
+	width: 87%; 
+	height:100vh; 
+    background-color:whitesmoke;
+    overflow: auto;
+}
+
+.adminmenu {
+	color:white;
+	display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    background-color: yellow;
+	width: 13%;
+	height: 100vh;
+	float:left;
+	background: #595959;
+	margin-right: auto;
+}
+.adminmenu ul {
+	display:block;
+	margin:0;
+	padding:0;
+}
+.adminmenu ul li {
+	list-style:none;
+	display:Block;
+}
+.adminmenu ul li a {
+	text-decoration:none;
+	font-size:18px;
+	font-family: Arial;
+	background: #333333;
+	display:Block;
+	padding:20px;
+	border-bottom:1px solid #888;
+}
+
+#anasayfa{
+	text-decoration:none;
+	font-size:18px;
+	font-family: Arial;
+	background: #fff;
+	display:Block;
+	padding:20px;
+	border-bottom:1px solid #888;
+	color: black;
+	border-right: #333333 solid 0.5px;
+}
+
+.adminmenu ul li a:hover {
+	
+}
+.adminmenu ul li ul {
+	display:block;
+}
+.adminmenu ul li:hover ul {
+	display:block;
+}
+.adminmenu ul li ul li a {
+	padding:20px 20px 20px 30px;
+	font-size: 16px;
+	background:#757575;
+	color:white;
+}
+.adminmenu ul li ul li a:hover {
+	background:#595959;
+}
+.adminmenu ul li ul li a:active {
+	background: #333333;
+}
+
+/* CONTENTS BAŞLANGICI */
+
+.contents{
+	display: flex;
+    flex-direction: column;
+	justify-content: center;	
+	background-color: white;
+	width: 80%;
+	margin:30px;
+}
+
+.contents p {
+	font-size: 18px;
+}
+
+.contents .border{
+	box-sizing: border-box;
+	border-width: 5px;
+	border-color: #333333;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.contents div{
+	
+	display: flex;
+    flex-direction: row;
+	align-self: center;
+	margin-bottom: 30px;
+}
+.contents div .content{
+	display: flex;
+	flex-direction: column;	
+}
+
+.contents div img{
+	width: 200px;
+	height: 200px;
+	padding: 10px;
+	align-self: center;
+	border-radius: 20%;
+}
+
+/* FOOTER BAŞLANGICI */
+
+.footer{ 
+	display: flex;
+    flex-direction: row;
+	justify-content: space-around;	
+	width: 100%;
+	height: 20vh;
+	background-color: #333333;
+}
+
+.footer .adress{
+	color: white;
+	align-self: center;
+}
+
+.footer .social{
+	align-self: center;
+}
+
+
+.footer .social img{
+	width: 50px;
+	height: 50px;
+}
