@@ -1,0 +1,1 @@
+Çalıştırabilmek için plugins.rar dosyasını plugins klasörüne çıkarmanız gerekmektedir.
